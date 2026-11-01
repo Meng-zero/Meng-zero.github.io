@@ -21,7 +21,7 @@
     <link href="/2026/10/31/Hello-Hexo/"/>
     <url>/2026/10/31/Hello-Hexo/</url>
     
-    <content type="html"><![CDATA[<p>正文从这里开始。</p><p>大家好呀，欢迎来到我的第一个blog，我会把我说学到的知识放进这里</p><span id="more"></span>]]></content>
+    <content type="html"><![CDATA[<p>正文从这里开始。</p><p><img src="/2026/10/31/test-index/1.png" alt="图片引用方法二">&gt;</p><p>大家好呀，欢迎来到我的第一个blog，我会把我说学到的知识放进这里</p><span id="more"></span>]]></content>
     
     
     <categories>
