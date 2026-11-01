@@ -1,4 +1,4 @@
-#---------------------------
+﻿#---------------------------
 # Hexo Theme Fluid
 # Author: Fluid-dev
 # Github: https://github.com/fluid-dev/hexo-theme-fluid
@@ -291,7 +291,7 @@ web_analytics:
     # OpenKounter API 服务器地址
     # OpenKounter API server URL
     # TODO: 部署 OpenKounter 后替换成你自己的地址，例如 https://counter.example.com
-    server_url: ''
+    server_url: 'https://counter.meng-zero.top'
     # 统计页面时获取路径的属性，通常使用 window.location.pathname
     # Get the attribute of the page path during statistics
     path: window.location.pathname
