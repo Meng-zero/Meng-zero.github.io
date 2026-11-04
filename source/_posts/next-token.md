@@ -1,7 +1,7 @@
 ---
 title: next-token
 date: 2026-11-04 18:01:40
-categoties:
+categories:
     - ai-agent
 tags:
     - ai-agent-learning
@@ -44,7 +44,8 @@ next-token prediction + 海量数据 + 巨大规模 -> 智能
 
 如果有兴趣可以自己玩玩这个代码，也是一个文本接龙，其实是狗屁不通文本生成器。
 这里的words是基于前缀次数的列表，相当于LLM里的参数，没有temperature这样的调节参数
-'''
+
+'''python
 #读入训练集
 def load_text():
     data=[]
