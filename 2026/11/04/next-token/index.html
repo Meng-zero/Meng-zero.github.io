@@ -27,7 +27,7 @@
 <meta property="og:description" content="正文从这里开始 LLM怎么猜下一个词的   首先看LLM本质：它不是数据库，它在做的是概率采样。那么什么算是概率采样呢？   你说一句“今天天气真”，模型会计算下一个token（当作要填在后面的字）的概率分布。比如“好”是0.35，“热”是0.22，“冷”是0.15，“不错”是0.08，“糟糕”是0.05。然后选了一个token（比如“好”），之后新的输入是“今天天气真好”，模型会继续计算下一个可">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-11-04T10:01:40.000Z">
-<meta property="article:modified_time" content="2026-11-04T11:13:23.563Z">
+<meta property="article:modified_time" content="2026-11-04T11:19:12.749Z">
 <meta property="article:author" content="Meng-zero">
 <meta property="article:tag" content="ai-agent-learning">
 <meta name="twitter:card" content="summary_large_image">
@@ -423,7 +423,8 @@
 <p>有了这些，LLM就能够理解咱们说的是啥了  </p>
 <p>关于涌现：参数多就涌现了智能，主打一个力大砖飞<br>几百万参数只能生成语法基本对的句子，几亿参数能写小文章，但事实经常错，几十亿参数能解简单题、写正确的代码片段，几千亿参数能做复杂推理、跟人深入对话、写长文档<br>next-token prediction + 海量数据 + 巨大规模 -&gt; 智能  </p>
 <p>你可以把这个当作一个学习过程，人的学习可以理解为不同的神经元之间建立联系，LLM的训练过程也是这样，每次参数的调节都是建立每个神经元单位的过程  </p>
-<p>如果有兴趣可以自己玩玩这个代码，也是一个文本接龙，其实是狗屁不通文本生成器。<br>这里的words是基于前缀次数的列表，相当于LLM里的参数，没有temperature这样的调节参数<br>‘’’<br>#读入训练集<br>def load_text():<br>    data&#x3D;[]<br>    with open(“your_txt_path”,”r”,encoding&#x3D;”utf-8”) as f: #改动你的训练数据地址<br>        for line in f:<br>            list&#x3D;line.split(“ “)<br>            for word in list:<br>                data.append(word)<br>    return data<br>words&#x3D;load_text()</p>
+<p>如果有兴趣可以自己玩玩这个代码，也是一个文本接龙，其实是狗屁不通文本生成器。<br>这里的words是基于前缀次数的列表，相当于LLM里的参数，没有temperature这样的调节参数</p>
+<p>‘’’python<br>#读入训练集<br>def load_text():<br>    data&#x3D;[]<br>    with open(“your_txt_path”,”r”,encoding&#x3D;”utf-8”) as f: #改动你的训练数据地址<br>        for line in f:<br>            list&#x3D;line.split(“ “)<br>            for word in list:<br>                data.append(word)<br>    return data<br>words&#x3D;load_text()</p>
 <p>#学习训练集<br>n&#x3D;len(words)<br>learning_&#x3D;{}<br>for i in range(n-2):<br>    w1,w2,w3&#x3D;words[i],words[i+1],words[i+2]<br>    pre&#x3D;(w1,w2)<br>    if pre not in learning_:<br>        learning_[pre]&#x3D;[]<br>    learning_[pre].append(w3)</p>
 <p>import random<br>random.seed()</p>
 <p>#根据训练集随机生成特定长度文本<br>start_pre&#x3D;random.choice(list(learning_.keys()))<br>cur_w1,cur_w2&#x3D;start_pre<br>ans&#x3D;[cur_w1,cur_w2]</p>
@@ -437,6 +438,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/ai-agent/" class="category-chain-item">ai-agent</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">
