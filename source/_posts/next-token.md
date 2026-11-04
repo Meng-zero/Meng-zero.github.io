@@ -41,3 +41,46 @@ RLHF（基于人类反馈的强化学习）：人类对多个回答排序打分�
 next-token prediction + 海量数据 + 巨大规模 -> 智能  
 
 你可以把这个当作一个学习过程，人的学习可以理解为不同的神经元之间建立联系，LLM的训练过程也是这样，每次参数的调节都是建立每个神经元单位的过程  
+
+如果有兴趣可以自己玩玩这个代码，也是一个文本接龙，其实是狗屁不通文本生成器。
+这里的words是基于前缀次数的列表，相当于LLM里的参数，没有temperature这样的调节参数
+'''
+#读入训练集
+def load_text():
+    data=[]
+    with open("your_txt_path","r",encoding="utf-8") as f: #改动你的训练数据地址
+        for line in f:
+            list=line.split(" ")
+            for word in list:
+                data.append(word)
+    return data
+words=load_text()
+
+#学习训练集
+n=len(words)
+learning_={}
+for i in range(n-2):
+    w1,w2,w3=words[i],words[i+1],words[i+2]
+    pre=(w1,w2)
+    if pre not in learning_:
+        learning_[pre]=[]
+    learning_[pre].append(w3)
+
+import random
+random.seed()
+
+#根据训练集随机生成特定长度文本
+start_pre=random.choice(list(learning_.keys()))
+cur_w1,cur_w2=start_pre
+ans=[cur_w1,cur_w2]
+
+m=int(input("please input the length of passage:"))
+
+for i in range(m-2):
+    nxt_=list(learning_[(cur_w1,cur_w2)])
+    nxt_w=random.choice(nxt_)
+    ans.append(nxt_w)
+    cur_w1,cur_w2=cur_w2,nxt_w
+
+print(" ".join(ans))
+'''
