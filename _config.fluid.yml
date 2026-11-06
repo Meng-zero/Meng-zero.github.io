@@ -1,4 +1,4 @@
-﻿#---------------------------
+#---------------------------
 # Hexo Theme Fluid
 # Author: Fluid-dev
 # Github: https://github.com/fluid-dev/hexo-theme-fluid
@@ -389,6 +389,7 @@ navbar:
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
+    - { name: "订阅", link: "/subscribe/" }
     #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
@@ -468,6 +469,7 @@ footer:
   # HTML of the first line of the footer, it is recommended to keep the Fluid link to promote this theme to more people
   content: '
     © 2026 <a href="https://github.com/Meng-zero" target="_blank" rel="noopener">Meng-zero</a>
+    · <a href="/subscribe/">订阅</a>
     · Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
     <i class="iconfont icon-love"></i>
     <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
