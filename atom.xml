@@ -10,7 +10,7 @@
   <rights>All rights reserved 2026, Meng-zero</rights>
   <subtitle>记录与分享</subtitle>
   <title>Meng-zero Blog</title>
-  <updated>2026-11-06T04:38:28.911Z</updated>
+  <updated>2026-11-06T06:04:27.870Z</updated>
   <entry>
     <author>
       <name>Meng-zero</name>
@@ -20,12 +20,29 @@
     </content>
     <id>https://meng-zero.github.io/2026/11/06/hello-world/</id>
     <link href="https://meng-zero.github.io/2026/11/06/hello-world/"/>
-    <published>2026-11-06T04:38:28.911Z</published>
+    <published>2026-11-06T06:04:27.870Z</published>
     <summary>
       <![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for]]>
     </summary>
     <title>Hello World</title>
-    <updated>2026-11-06T04:38:28.911Z</updated>
+    <updated>2026-11-06T06:04:27.870Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Meng-zero</name>
+    </author>
+    <content>
+      <![CDATA[<p>关于同一个LLM的不同表现，区别在于system prompt  </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 正经模式</span><br>messages = [<br>    &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;system&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;你是一位专业的技术助手&quot;</span>&#125;,<br>    &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;你是谁？&quot;</span>&#125;<br>]<br><span class="hljs-comment"># → &quot;我是一个 AI 助手，可以帮你解决技术问题。&quot;</span><br><br><span class="hljs-comment"># 猫娘模式</span><br>messages = [<br>    &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;system&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;你是一只猫娘，每句话以喵结尾&quot;</span>&#125;,<br>    &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;你是谁？&quot;</span>&#125;<br>]<br><span class="hljs-comment"># → &quot;我是一只可爱的猫娘喵～&quot;</span><br>```  <br>这是如何做到的？答案是messages协议  <br>messages协议是什么？  <br>首先，所有的OpenAI兼容的LLM API都使用同一种输入格式：<br>```python<br>messages = [<br>    &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;system&quot;</span>,    <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;你是一个简洁的助手。&quot;</span>&#125;,<br>    &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>,      <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;什么是递归？&quot;</span>&#125;,<br>    &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;assistant&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;函数调用自身解决子问题。&quot;</span>&#125;,<br>    &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>,      <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;举个例子。&quot;</span>&#125;,<br>]<br>```  <br><span class="hljs-number">1</span>) 为什么需要这个协议  <br>大模型（LLM）本身是一个无状态函数<br>```python<br>输出 = 模型(输入)<br>```  <br>调用一次返回一次，结束后啥也不记得。当我们所希望的是模型知道自己是谁，该咋说，哪句是它说的，前面说过啥  <br>Messages协议就是为了这个来的  <br><span class="hljs-number">2</span>) 三种核心角色role  <br><span class="hljs-number">1.</span> system--系统提示词，让模型换人设  <br>它是整个对话需求优先级的最高指令，用来设定模型人设、语气、规则和边界  <br><span class="hljs-number">2.</span> user--用户输入  <br>用户实际送达的信息。可以是各种东西，比如问题、指令、代码片段或者图片等  <br><span class="hljs-number">3.</span> assistant--模型之前的回复  <br>不是必须手写，而是在多轮对话时要由你的程序把模型的回复原样append到列表里，再作为下一轮的输入。这个正是“记忆”的实现方式  <br><span class="hljs-number">4.</span> tool相关角色  <br>调用函数或者工具时，会出现tool角色的消息，用于把函数返回值交还给模型。另外，assistant消息可以附带tool_calls字段来声明“我要调用哪个函数”。这个是构建Agent的基础  <br><br>一次完整的请求流程如下：  <br>```python<br>① 用户输入问题<br>        ↓<br>② 程序拼装 messages 列表<br>   [system] + [历史轮次] + [本次 user]<br>        ↓<br>③ HTTP 请求发往 API<br>        ↓<br>④ 模型读完整列表 → 生成下一条 assistant 回复<br>        ↓<br>⑤ 程序把回复追加进列表<br>   messages.append(&#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;assistant&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: reply&#125;)<br>        ↓<br>⑥ 下一轮对话，再次发送完整列表 → 循环<br></code></pre></td></tr></table></figure><p>注意事项  </p><ol><li>system不是万能的，模型仍然可能违反system指令。所以重要规则要写在system里，并最好在user里再强调一次  </li><li>历史消息不能无限长，不能一口吃，最常见的做法是：保留最近N条 + 早期内容做摘要压缩  </li><li>content必须是字符串，多模态时不能直接塞字典，需要按供应商要求改写  </li><li>不要手动伪造assistant消息，你还不是AI，所以不要试图模仿它的话，会让它认错的  </li><li>角色约束有顺序，一般要求system在最前面，user和assistant交替出现  </li><li>temperature与人设配合，固定人设做精确输出时调低0.3左右，创意类调高0.8 - 1.0<br>总之，Messages协议就是你们之间的聊天记录，以某种形式存储，然后每次对话ai调用后读这个历史对话再回答你</li></ol>]]>
+    </content>
+    <id>https://meng-zero.github.io/2026/11/06/prompt-and-messages/</id>
+    <link href="https://meng-zero.github.io/2026/11/06/prompt-and-messages/"/>
+    <published>2026-11-06T05:19:16.000Z</published>
+    <summary>
+      <![CDATA[<p>关于同一个LLM的不同表现，区别在于system prompt  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br>]]>
+    </summary>
+    <title>prompt_and_messages</title>
+    <updated>2026-11-06T06:04:27.871Z</updated>
   </entry>
   <entry>
     <author>
@@ -46,7 +63,7 @@
 <p>你说一句“今天天气真”，模型会计算下一个token（当作要填在后面的字）的概率分布。比如“好”是0.35，]]>
     </summary>
     <title>next-token</title>
-    <updated>2026-11-06T04:38:28.911Z</updated>
+    <updated>2026-11-06T06:04:27.871Z</updated>
   </entry>
   <entry>
     <author>
@@ -84,6 +101,6 @@
 -->]]>
     </summary>
     <title>test_index</title>
-    <updated>2026-11-06T04:38:28.911Z</updated>
+    <updated>2026-11-06T06:04:27.871Z</updated>
   </entry>
 </feed>
