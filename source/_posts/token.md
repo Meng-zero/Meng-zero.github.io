@@ -18,7 +18,7 @@ token的产生有其必要性，计算机只能处理数字，不能直接理解
 
 好了，你知道它用啥切词方案了，可是还是文本啊，咋换成数字？  
 token和向量的关系  
-![完整流程](token\1.png)  
+{% asset_img 1.png 完整流程 %} 
 每个token对应词表里的一个整数ID，然后通过嵌入矩阵（Embedding Matrix）把这个ID映射为一个高维向量（通常1024-12288维）  
 这样模型就能理解说的是啥了，语义相近的token，向量也会接近  
 
@@ -36,7 +36,7 @@ tokenization -> token + ization
 3. 合并： 把这一对合并成一个新的token  
 4. 循环至词表大小达到预设值  
 
-![BPE流程](token\2.png)
+{% asset_img 2.png BPE流程 %}
 
 这样的好处：  
 1. 词表可控  
@@ -46,7 +46,7 @@ tokenization -> token + ization
 所以说token不是我们常见的词或字，而是介于它们之间的一个东西  
 
 一般来说有这样的经验法则  
-![](token\3.png)  
+{% asset_img 3.png %}  
 
 我们如何查看token的切分呢？  
 可以用OpenAI的tiktoten库来查看任意文本被切成了什么token  
