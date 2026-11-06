@@ -1,0 +1,55 @@
+/* 文章末尾的订阅入口 */
+.sub-cta {
+  margin: 2rem 0 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  background: #f4f6f9;
+  border: 1px solid #e3e7ed;
+  text-align: center;
+}
+
+.sub-cta-title {
+  margin: 0 0 0.35rem !important;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.sub-cta-desc {
+  margin: 0 0 1rem !important;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.sub-cta-btn {
+  display: inline-block;
+  padding: 0.5rem 1.4rem;
+  border-radius: 6px;
+  background: #2f4154;
+  color: #fff !important;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  transition: background 0.2s ease;
+}
+
+.sub-cta-btn:hover {
+  background: #1f3144;
+  color: #fff !important;
+  text-decoration: none;
+}
+
+html[data-user-color-scheme="dark"] .sub-cta {
+  background: #252d38;
+  border-color: #3a4656;
+}
+
+html[data-user-color-scheme="dark"] .sub-cta-desc {
+  color: #9aa5b1;
+}
+
+html[data-user-color-scheme="dark"] .sub-cta-btn {
+  background: #46647e;
+}
+
+html[data-user-color-scheme="dark"] .sub-cta-btn:hover {
+  background: #3a556b;
+}
