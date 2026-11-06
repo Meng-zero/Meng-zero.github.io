@@ -1,10 +1,15 @@
 ---
 title: prompt_and_messages
 date: 2026-11-06 13:19:16
+categories:
+    - ai-agent
 tags:
+    - ai-agent-learning
+describe: 第二节
 ---
 
 关于同一个LLM的不同表现，区别在于system prompt  
+
 ```python
 # 正经模式
 messages = [
@@ -19,10 +24,12 @@ messages = [
     {"role": "user", "content": "你是谁？"}
 ]
 # → "我是一只可爱的猫娘喵～"
-```  
+```
+
 这是如何做到的？答案是messages协议  
 messages协议是什么？  
-首先，所有的OpenAI兼容的LLM API都使用同一种输入格式：
+首先，所有的OpenAI兼容的LLM API都使用同一种输入格式：  
+
 ```python
 messages = [
     {"role": "system",    "content": "你是一个简洁的助手。"},
@@ -31,11 +38,14 @@ messages = [
     {"role": "user",      "content": "举个例子。"},
 ]
 ```  
+
 1) 为什么需要这个协议  
-大模型（LLM）本身是一个无状态函数
+大模型（LLM）本身是一个无状态函数  
+
 ```python
 输出 = 模型(输入)
 ```  
+
 调用一次返回一次，结束后啥也不记得。当我们所希望的是模型知道自己是谁，该咋说，哪句是它说的，前面说过啥  
 Messages协议就是为了这个来的  
 2) 三种核心角色role  
@@ -49,7 +59,8 @@ Messages协议就是为了这个来的
 调用函数或者工具时，会出现tool角色的消息，用于把函数返回值交还给模型。另外，assistant消息可以附带tool_calls字段来声明“我要调用哪个函数”。这个是构建Agent的基础  
 
 一次完整的请求流程如下：  
-```python
+
+```text
 ① 用户输入问题
         ↓
 ② 程序拼装 messages 列表
@@ -63,7 +74,8 @@ Messages协议就是为了这个来的
    messages.append({"role": "assistant", "content": reply})
         ↓
 ⑥ 下一轮对话，再次发送完整列表 → 循环
-```
+```  
+
 注意事项  
 1. system不是万能的，模型仍然可能违反system指令。所以重要规则要写在system里，并最好在user里再强调一次  
 2. 历史消息不能无限长，不能一口吃，最常见的做法是：保留最近N条 + 早期内容做摘要压缩  
