@@ -10,7 +10,7 @@
   <rights>All rights reserved 2026, Meng-zero</rights>
   <subtitle>记录与分享</subtitle>
   <title>Meng-zero Blog</title>
-  <updated>2026-11-06T04:34:00.633Z</updated>
+  <updated>2026-11-06T04:38:28.911Z</updated>
   <entry>
     <author>
       <name>Meng-zero</name>
@@ -20,12 +20,12 @@
     </content>
     <id>https://meng-zero.github.io/2026/11/06/hello-world/</id>
     <link href="https://meng-zero.github.io/2026/11/06/hello-world/"/>
-    <published>2026-11-06T04:34:00.633Z</published>
+    <published>2026-11-06T04:38:28.911Z</published>
     <summary>
       <![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for]]>
     </summary>
     <title>Hello World</title>
-    <updated>2026-11-06T04:34:00.633Z</updated>
+    <updated>2026-11-06T04:38:28.911Z</updated>
   </entry>
   <entry>
     <author>
@@ -46,7 +46,7 @@
 <p>你说一句“今天天气真”，模型会计算下一个token（当作要填在后面的字）的概率分布。比如“好”是0.35，]]>
     </summary>
     <title>next-token</title>
-    <updated>2026-11-06T04:34:00.633Z</updated>
+    <updated>2026-11-06T04:38:28.911Z</updated>
   </entry>
   <entry>
     <author>
@@ -84,6 +84,6 @@
 -->]]>
     </summary>
     <title>test_index</title>
-    <updated>2026-11-06T04:34:00.633Z</updated>
+    <updated>2026-11-06T04:38:28.911Z</updated>
   </entry>
 </feed>
