@@ -30,7 +30,7 @@ describe: 1~4节番外
     2) 核心结构  
     核心数据都在choices列表里，默认只有一个元素  
 
-```text  
+```python 
 ChatCompletion(
     id="chatcmpl-...", 
     object="chat.completion",
@@ -56,12 +56,13 @@ ChatCompletion(
 ```
 
 看来这样的结构发现resp.choices[0].message.content就是大模型给你的答复，但是如果模型触发工具调用，content可能是None，于是return一般会用or ""兜底  
-2. stream = True  
+
+2. stream = True
     1) 返回对象类型  
     Stream[ChatCompletionChunk]生成器对象。不同于非流式，这个对象像一个水管，需要for循环去不停接水  
     2) 核心结构拆解  
     每次循环拿到的chunk，结构和非流式类似，只是内容变成了增量  
-```pyhton  
+```python  
 ChatCompletionChunk(
     id="chatcmpl-...",
     object="chat.completion.chunk", # 注意这里多了 .chunk
