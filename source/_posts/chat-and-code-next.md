@@ -8,6 +8,7 @@ tags:
 describe: 1~4节番外补充
 ---
 
+# 流式返回值
 这里主要看看流式返回值我们应该如何处理，因为cnb平台上是一般流式的返回  
 这里我会将尝试把流式包装在函数里看着像一个非流式
 
@@ -167,3 +168,48 @@ if __name__ == "__main__":
     print(resp)
     print(f"本次对话消耗{usage_info["total_tokens"]}token")
 ```
+
+# 关于**kwargs
+再介绍一个东西--**kwargs（ketword arguments,关键字参数）
+**kwargs主要用来动态接受或传递任意数量的关键字参数  ，接下来看看该如何使用它吧 
+1. 基础语法
+```python
+def test_kwargs(**kwargs):
+    print(kwargs)
+test_kwargs(temperature = 0.5, max_tokens = 100)
+# 输出：{'temperature': 0.5, 'max_tokens': 100}
+```
+2. 在OpenAI SDK中的核心应用（动态传参）
+直接看代码来看看它起的作用
+```python
+def chat_general(system_prompt: str, user_message: str, **kwargs) -> str:
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_message},
+    ]
+    
+    # kwargs 会变成一个字典，比如 {"temperature": 0.1, "max_tokens": 50}
+    response = client.chat.completions.create(
+        model="deepseek-chat",
+        messages=messages,
+        # 使用 ** 解包，把字典里的参数原封不动传递给 API
+        **kwargs 
+    )
+    return response.choices[0].message.content
+
+# 调用场景 A：默认情况（不传额外参数）
+reply_a = chat_general("你是助手", "你好")
+
+# 调用场景 B：精确控制输出（传入了 temperature 和 max_tokens）
+reply_b = chat_general(
+    "你是助手", 
+    "写一首诗", 
+    temperature=0.1, 
+    max_tokens=50
+)
+```
+同一个函数的传参更加灵活，它像一个字典，把参数都包含在了里面，如果用户传了参数为非流式，但客户端只能用流式，你可以在函数里加上
+```python
+kwargs["stream"] = True
+```
+来进行切换，更加方便的兼容
