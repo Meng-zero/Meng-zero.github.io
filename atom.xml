@@ -10,7 +10,7 @@
   <rights>All rights reserved 2026, Meng-zero</rights>
   <subtitle>记录与分享</subtitle>
   <title>Meng-zero Blog</title>
-  <updated>2026-11-08T02:40:33.413Z</updated>
+  <updated>2026-11-08T03:13:43.545Z</updated>
   <entry>
     <author>
       <name>Meng-zero</name>
@@ -20,12 +20,33 @@
     </content>
     <id>https://meng-zero.github.io/2026/11/08/hello-world/</id>
     <link href="https://meng-zero.github.io/2026/11/08/hello-world/"/>
-    <published>2026-11-08T02:40:33.413Z</published>
+    <published>2026-11-08T03:13:43.545Z</published>
     <summary>
       <![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for]]>
     </summary>
     <title>Hello World</title>
-    <updated>2026-11-08T02:40:33.413Z</updated>
+    <updated>2026-11-08T03:13:43.545Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Meng-zero</name>
+    </author>
+    <category term="ai-agent" scheme="https://meng-zero.github.io/categories/ai-agent/"/>
+    <category term="ai-agent-learning" scheme="https://meng-zero.github.io/tags/ai-agent-learning/"/>
+    <content>
+      <![CDATA[<p>今天主要看看agent和chatbot的最大区别<br>agent在循环里反复调用llm + tool直到完成工作；chatbot只是一问一答的函数<br>来看看chatbot完成一次工作的流程</p><img src="/2026/11/08/agent-chatbot/1.png" class=""><p>再看看agent完成一次工作的流程</p><img src="/2026/11/08/agent-chatbot/2.png" class=""><p>agent程序里的loop环节让llm可以多次请求tool完成实时信息的获取来完成任务</p><p>面对一个需要实时获取信息的问题:<br>chatbot会不知道或者乱编一个回答<br>agent则会调用工具获得信息然后解决问题并回答</p><p>这个表格很不错</p><img src="/2026/11/08/agent-chatbot/3.png" class=""><p>我们所说的agent，也就是代理人，就是它帮我们回应llm，并调用llm。再看看harness，马具，llm是马，这些都是为了让llm的思考有回音，能调用工具，能决策啥时候做完了，agent程序，就是我们现在正在处理的问题。</p>]]>
+    </content>
+    <id>https://meng-zero.github.io/2026/11/08/agent-chatbot/</id>
+    <link href="https://meng-zero.github.io/2026/11/08/agent-chatbot/"/>
+    <published>2026-11-08T02:42:57.000Z</published>
+    <summary>
+      <![CDATA[<p>今天主要看看agent和chatbot的最大区别<br>agent在循环里反复调用llm + tool直到完成工作；chatbot只是一问一答的函数<br>来看看chatbot完成一次工作的流程</p>
+<img src="/2026/11/08/agent-chatbot]]>
+    </summary>
+    <title>
+      <![CDATA[agent&chatbot]]>
+    </title>
+    <updated>2026-11-08T03:13:43.539Z</updated>
   </entry>
   <entry>
     <author>
@@ -43,7 +64,7 @@
       <![CDATA[<h1 id="流式返回值"><a href="#流式返回值" class="headerlink" title="流式返回值"></a>流式返回值</h1><p>这里主要看看流式返回值我们应该如何处理，因为cnb平台上是一般流式的返回<br>这里我会将尝试把流式包装在函数里看着]]>
     </summary>
     <title>chat_and_code_next</title>
-    <updated>2026-11-08T02:40:33.409Z</updated>
+    <updated>2026-11-08T03:13:43.541Z</updated>
   </entry>
   <entry>
     <author>
@@ -63,7 +84,7 @@
 <h1 id="核心参数"><a href="#核心参数" class="heade]]>
     </summary>
     <title>chat and code</title>
-    <updated>2026-11-08T02:40:33.409Z</updated>
+    <updated>2026-11-08T03:13:43.541Z</updated>
   </entry>
   <entry>
     <author>
@@ -82,7 +103,7 @@
 <h1 id="方式1：把信息塞进Prom]]>
     </summary>
     <title>llm-needs-augmentation</title>
-    <updated>2026-11-08T02:40:33.413Z</updated>
+    <updated>2026-11-08T03:13:43.545Z</updated>
   </entry>
   <entry>
     <author>
@@ -100,7 +121,7 @@
       <![CDATA[<p>OK啊，今天来讲讲所谓的token，用大模型都会关心花了多少token，那么这个究竟是什么？让我们一起进去看看<br>这一节包含token、上下文窗口与成本<br>token的产生有其必要性，计算机只能处理数字，不能直接理解文本，所以文本进入LLM之前，必须把它转化成为数字]]>
     </summary>
     <title>token</title>
-    <updated>2026-11-08T02:40:33.418Z</updated>
+    <updated>2026-11-08T03:13:43.549Z</updated>
   </entry>
   <entry>
     <author>
@@ -119,7 +140,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br>]]>
     </summary>
     <title>prompt_and_messages</title>
-    <updated>2026-11-08T02:40:33.413Z</updated>
+    <updated>2026-11-08T03:13:43.546Z</updated>
   </entry>
   <entry>
     <author>
@@ -140,7 +161,7 @@
 <p>你说一句“今天天气真”，模型会计算下一个token（当作要填在后面的字）的概率分布。比如“好”是0.35，]]>
     </summary>
     <title>next-token</title>
-    <updated>2026-11-08T02:40:33.413Z</updated>
+    <updated>2026-11-08T03:13:43.546Z</updated>
   </entry>
   <entry>
     <author>
@@ -178,6 +199,6 @@
 -->]]>
     </summary>
     <title>test_index</title>
-    <updated>2026-11-08T02:40:33.414Z</updated>
+    <updated>2026-11-08T03:13:43.546Z</updated>
   </entry>
 </feed>
