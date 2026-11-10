@@ -10,7 +10,7 @@
   <rights>All rights reserved 2026, Meng-zero</rights>
   <subtitle>记录与分享</subtitle>
   <title>Meng-zero Blog</title>
-  <updated>2026-11-10T05:24:12.412Z</updated>
+  <updated>2026-11-10T08:24:41.645Z</updated>
   <entry>
     <author>
       <name>Meng-zero</name>
@@ -20,12 +20,33 @@
     </content>
     <id>https://meng-zero.github.io/2026/11/10/hello-world/</id>
     <link href="https://meng-zero.github.io/2026/11/10/hello-world/"/>
-    <published>2026-11-10T05:24:12.412Z</published>
+    <published>2026-11-10T08:24:41.645Z</published>
     <summary>
       <![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for]]>
     </summary>
     <title>Hello World</title>
-    <updated>2026-11-10T05:24:12.412Z</updated>
+    <updated>2026-11-10T08:24:41.645Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Meng-zero</name>
+    </author>
+    <category term="ai-agent" scheme="https://meng-zero.github.io/categories/ai-agent/"/>
+    <category term="ai-agent-learning" scheme="https://meng-zero.github.io/tags/ai-agent-learning/"/>
+    <content>
+      <![CDATA[<p>这里是后面的预告，了解工具哪里来？怎么和能力打包成一个技能？喂给模型的是什么数据？</p><h1 id="MCP-工具协议化"><a href="#MCP-工具协议化" class="headerlink" title="MCP 工具协议化"></a>MCP 工具协议化</h1><p>我们自己手写ToolRegistry，所有工具都要写到Agent仓库里，想接github，slack，notion三个外部系统就需要你自己读三家的API文档然后自己手写schema，维护也要跟着改，就很。<br>MCP把这件事反过来，github&#x2F;slack&#x2F;notion各自跑一个MCP Server，它们自己声明我有哪些工具，参数是什么，我们的Agent只需要一个MCP客户端，连过去就能用。tool_calls协议不变，只是工具实现方从我们自己写变成了远程拉取</p><h1 id="Skill-工具-提示词-资源的打包"><a href="#Skill-工具-提示词-资源的打包" class="headerlink" title="Skill 工具 + 提示词 + 资源的打包"></a>Skill 工具 + 提示词 + 资源的打包</h1><p>做成一件事的能力包含：1.工具（读PDF）；2.prompt（教模型什么时候用工具，怎么用）；3.一些资源（模板之类）<br>Skill就是把这三个东西打包在一个目录：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">skills/<br>└── pdf-fill/<br>    ├── SKILL.md          # 触发条件 + 调用约定（喂给 system prompt）<br>    ├── tools/            # 该 Skill 专属工具<br>    └── assets/           # 模板、样例<br></code></pre></td></tr></table></figure><p>模型在system prompt里看见SKILL.md的描述，决定这个任务用pdf-fill Skill，把工具和知识打包成专家模块。</p><h1 id="RAG-把知识查询伪装成一个工具"><a href="#RAG-把知识查询伪装成一个工具" class="headerlink" title="RAG 把知识查询伪装成一个工具"></a>RAG 把知识查询伪装成一个工具</h1><p>先用向量检索从私有知识库捞top-k段落，再把这些段落塞进prompt，让模型基于这些内容回答<br>RAG在Agent里通常以一个工具的形态存在。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@registry.tool(<span class="hljs-params"><span class="hljs-string">&quot;从公司内部知识库检索相关段落&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">search_kb</span>(<span class="hljs-params">query: <span class="hljs-built_in">str</span>, top_k: <span class="hljs-built_in">int</span> = <span class="hljs-number">5</span></span>) -&gt; <span class="hljs-built_in">str</span>:<br>    vectors = embed(query)<br>    docs = vector_db.query(vectors, top_k=top_k)<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;\n\n&quot;</span>.join(d.content <span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> docs)<br></code></pre></td></tr></table></figure><p>这里只是简单小计，下一节应该会是5-8节重要代码的实现</p>]]>
+    </content>
+    <id>https://meng-zero.github.io/2026/11/10/MCP-Skill-RAG/</id>
+    <link href="https://meng-zero.github.io/2026/11/10/MCP-Skill-RAG/"/>
+    <published>2026-11-10T08:03:01.000Z</published>
+    <summary>
+      <![CDATA[<p>这里是后面的预告，了解工具哪里来？怎么和能力打包成一个技能？喂给模型的是什么数据？</p>
+<h1 id="MCP-工具协议化"><a href="#MCP-工具协议化" class="headerlink" title="MCP 工具协议化"></a>MCP 工具协议化<]]>
+    </summary>
+    <title>
+      <![CDATA[MCP&Skill&RAG]]>
+    </title>
+    <updated>2026-11-10T08:24:41.635Z</updated>
   </entry>
   <entry>
     <author>
@@ -44,7 +65,7 @@
 <h1 id="简单的代码实现"><a href="#简单的代码实现" class="headerlink" title="简单的代码实现"></a>简单的代码实现]]>
     </summary>
     <title>mini_agent_loop</title>
-    <updated>2026-11-10T05:24:12.412Z</updated>
+    <updated>2026-11-10T08:24:41.646Z</updated>
   </entry>
   <entry>
     <author>
@@ -62,7 +83,7 @@
       <![CDATA[<h1 id="Function-Calling协议"><a href="#Function-Calling协议" class="headerlink" title="Function Calling协议"></a>Function Calling协议</h1><p>Functi]]>
     </summary>
     <title>tool</title>
-    <updated>2026-11-10T05:24:12.416Z</updated>
+    <updated>2026-11-10T08:24:41.651Z</updated>
   </entry>
   <entry>
     <author>
@@ -83,7 +104,7 @@
     <title>
       <![CDATA[agent&chatbot]]>
     </title>
-    <updated>2026-11-10T05:24:12.405Z</updated>
+    <updated>2026-11-10T08:24:41.635Z</updated>
   </entry>
   <entry>
     <author>
@@ -101,7 +122,7 @@
       <![CDATA[<h1 id="流式返回值"><a href="#流式返回值" class="headerlink" title="流式返回值"></a>流式返回值</h1><p>这里主要看看流式返回值我们应该如何处理，因为cnb平台上是一般流式的返回<br>这里我会将尝试把流式包装在函数里看着]]>
     </summary>
     <title>chat_and_code_next</title>
-    <updated>2026-11-10T05:24:12.408Z</updated>
+    <updated>2026-11-10T08:24:41.640Z</updated>
   </entry>
   <entry>
     <author>
@@ -121,7 +142,7 @@
 <h1 id="核心参数"><a href="#核心参数" class="heade]]>
     </summary>
     <title>chat and code</title>
-    <updated>2026-11-10T05:24:12.408Z</updated>
+    <updated>2026-11-10T08:24:41.640Z</updated>
   </entry>
   <entry>
     <author>
@@ -140,7 +161,7 @@
 <h1 id="方式1：把信息塞进Prom]]>
     </summary>
     <title>llm-needs-augmentation</title>
-    <updated>2026-11-10T05:24:12.412Z</updated>
+    <updated>2026-11-10T08:24:41.645Z</updated>
   </entry>
   <entry>
     <author>
@@ -158,7 +179,7 @@
       <![CDATA[<p>OK啊，今天来讲讲所谓的token，用大模型都会关心花了多少token，那么这个究竟是什么？让我们一起进去看看<br>这一节包含token、上下文窗口与成本<br>token的产生有其必要性，计算机只能处理数字，不能直接理解文本，所以文本进入LLM之前，必须把它转化成为数字]]>
     </summary>
     <title>token</title>
-    <updated>2026-11-10T05:24:12.415Z</updated>
+    <updated>2026-11-10T08:24:41.651Z</updated>
   </entry>
   <entry>
     <author>
@@ -177,7 +198,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br>]]>
     </summary>
     <title>prompt_and_messages</title>
-    <updated>2026-11-10T05:24:12.412Z</updated>
+    <updated>2026-11-10T08:24:41.646Z</updated>
   </entry>
   <entry>
     <author>
@@ -198,7 +219,7 @@
 <p>你说一句“今天天气真”，模型会计算下一个token（当作要填在后面的字）的概率分布。比如“好”是0.35，]]>
     </summary>
     <title>next-token</title>
-    <updated>2026-11-10T05:24:12.412Z</updated>
+    <updated>2026-11-10T08:24:41.646Z</updated>
   </entry>
   <entry>
     <author>
@@ -236,6 +257,6 @@
 -->]]>
     </summary>
     <title>test_index</title>
-    <updated>2026-11-10T05:24:12.412Z</updated>
+    <updated>2026-11-10T08:24:41.646Z</updated>
   </entry>
 </feed>
