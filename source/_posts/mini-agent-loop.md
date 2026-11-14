@@ -115,6 +115,8 @@ def run_agent(user_input: str, max_turns: int = 8) -> str:
 ```
 这一部分主要看注解理解这个循环的每轮的逻辑
 循环里每轮tools=schemas相同，messages会添加每一轮的结果
+整个过程的逻辑是
+获得工具 -> 开始循环 -> 调用模型看message -> message添加新回复 -> 判断是否收敛（没有工具调用） -> 调用工具 -> 将工具结果添加到message -> 结束循环，返回结果
 
 ## 入口
 ```python
